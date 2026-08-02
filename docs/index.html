@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101012" />
+    <meta name="description" content="Digital contact card for Omar Abdullah Eshaq" />
+    <title>Omar Abdullah Eshaq | Digital Contact</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <div class="halo halo-one"></div><div class="halo halo-two"></div>
+      <article class="contact-card" id="card">
+        <header class="identity">
+          <div class="topbar">
+            <span class="label"><i></i> Digital contact</span>
+            <button class="icon-button" id="share" aria-label="Share this contact card"><iconify-icon icon="solar:share-bold"></iconify-icon></button>
+          </div>
+          <div class="logo-stage" aria-hidden="true">
+            <span class="orbit outer"></span><span class="orbit inner"></span><span class="star first"></span><span class="star second"></span>
+            <div class="logo"><img src="assets/logo.png" alt="" /><span></span></div>
+          </div>
+          <p class="availability"><i></i> Available for business</p>
+          <p class="role">Assistant General Manager</p>
+          <h1>Omar Abdullah <em>Eshaq</em></h1>
+          <p class="company">Eshaq Trading Company</p>
+          <div class="signature"><span></span> ETC <span></span></div>
+        </header>
+
+        <section class="details">
+          <div class="heading"><div><p>Contact</p><h2>Let’s connect</h2></div><small>01 — 03</small></div>
+          <div class="contact-list">
+            <div class="contact-row">
+              <a href="tel:+967776060802"><b>01</b><span class="row-icon"><iconify-icon icon="solar:phone-calling-bold"></iconify-icon></span><span><small>Phone</small><strong>+967 776 060 802</strong></span><iconify-icon class="arrow" icon="solar:arrow-up-right-bold"></iconify-icon></a>
+              <button data-copy="+967776060802" data-label="Phone" aria-label="Copy phone number"><iconify-icon icon="solar:copy-bold"></iconify-icon></button>
+            </div>
+            <div class="contact-row">
+              <a href="mailto:omar@eshaqltd.com"><b>02</b><span class="row-icon"><iconify-icon icon="solar:letter-bold"></iconify-icon></span><span><small>Email</small><strong>omar@eshaqltd.com</strong></span><iconify-icon class="arrow" icon="solar:arrow-up-right-bold"></iconify-icon></a>
+              <button data-copy="omar@eshaqltd.com" data-label="Email" aria-label="Copy email"><iconify-icon icon="solar:copy-bold"></iconify-icon></button>
+            </div>
+            <div class="contact-row location">
+              <a href="https://maps.google.com/?q=Sana%27a%2C%20Yemen" target="_blank" rel="noreferrer"><b>03</b><span class="row-icon"><iconify-icon icon="solar:map-point-bold"></iconify-icon></span><span><small>Location</small><strong>Yemen, Sana’a</strong></span><iconify-icon class="arrow" icon="solar:arrow-up-right-bold"></iconify-icon></a>
+            </div>
+          </div>
+          <div class="actions">
+            <a class="action save" href="assets/omar-abdullah-eshaq.vcf" download><span><iconify-icon icon="solar:bookmark-square-bold"></iconify-icon></span><b><small>Add to your address book</small>Save Contact</b><iconify-icon icon="solar:download-minimalistic-bold"></iconify-icon></a>
+            <a class="action whatsapp" href="https://wa.me/967776060802" target="_blank" rel="noreferrer"><span><iconify-icon icon="fa6-brands:whatsapp"></iconify-icon></span><b><small>Message directly</small>Chat on WhatsApp</b><iconify-icon icon="solar:arrow-up-right-bold"></iconify-icon></a>
+            <button class="action wechat" id="wechat"><span><iconify-icon icon="fa6-brands:weixin"></iconify-icon></span><b><small>Number copied automatically</small>Add on WeChat</b><iconify-icon icon="solar:arrow-up-right-bold"></iconify-icon></button>
+          </div>
+        </section>
+        <footer><span>Eshaq Trading Company</span><i>E</i><span>Established 1995</span></footer>
+      </article>
+      <p class="toast" id="toast"><iconify-icon icon="solar:check-circle-bold"></iconify-icon><span></span></p>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
