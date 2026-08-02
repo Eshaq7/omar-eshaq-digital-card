@@ -23,7 +23,7 @@ button { color: inherit; font: inherit; }
   min-height: 100svh;
   display: grid;
   place-items: center;
-  padding: clamp(20px, 4vw, 58px);
+  padding: 16px;
   position: relative;
   overflow: hidden;
   isolation: isolate;

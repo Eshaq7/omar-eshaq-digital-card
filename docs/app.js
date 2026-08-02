@@ -1,5 +1,19 @@
 const toast = document.querySelector('#toast');
+const card = document.querySelector('#card');
 let timeout;
+
+function fitCardToViewport() {
+  card.style.zoom = '1';
+  if (window.innerWidth <= 560) return;
+
+  const availableWidth = window.innerWidth - 32;
+  const availableHeight = window.innerHeight - 32;
+  const scale = Math.min(1, availableWidth / card.offsetWidth, availableHeight / card.scrollHeight);
+  card.style.zoom = String(Math.max(0.5, scale));
+}
+
+fitCardToViewport();
+window.addEventListener('resize', fitCardToViewport, { passive: true });
 function show(message) {
   toast.querySelector('span').textContent = message;
   toast.classList.add('show');

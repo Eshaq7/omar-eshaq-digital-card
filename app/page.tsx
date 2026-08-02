@@ -1,6 +1,6 @@
 "use client";
 
-import { CSSProperties, MouseEvent, useRef, useState } from "react";
+import { CSSProperties, MouseEvent, useEffect, useRef, useState } from "react";
 import {
   FiArrowUpRight,
   FiCheck,
@@ -27,6 +27,25 @@ export default function Home() {
   const [notice, setNotice] = useState("");
   const [copied, setCopied] = useState("");
   const cardRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    function fitCardToViewport() {
+      const card = cardRef.current;
+      if (!card) return;
+
+      card.style.setProperty("zoom", "1");
+      if (window.innerWidth <= 560) return;
+
+      const availableWidth = window.innerWidth - 32;
+      const availableHeight = window.innerHeight - 32;
+      const scale = Math.min(1, availableWidth / card.offsetWidth, availableHeight / card.scrollHeight);
+      card.style.setProperty("zoom", String(Math.max(0.5, scale)));
+    }
+
+    fitCardToViewport();
+    window.addEventListener("resize", fitCardToViewport, { passive: true });
+    return () => window.removeEventListener("resize", fitCardToViewport);
+  }, []);
 
   function showNotice(message: string) {
     setNotice(message);
