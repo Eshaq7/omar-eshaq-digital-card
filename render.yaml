@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: omar-eshaq-digital-card
+    runtime: static
+    repo: https://github.com/Eshaq7/omar-eshaq-digital-card
+    branch: main
+    plan: free
+    buildCommand: echo "Using prebuilt static files"
+    staticPublishPath: ./docs
+    autoDeployTrigger: commit
+    renderSubdomainPolicy: enabled
