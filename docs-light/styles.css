@@ -67,6 +67,8 @@ button { color: inherit; font: inherit; }
 .disc-glint::before { content: ""; position: absolute; inset: -55%; background: linear-gradient(105deg, transparent 44%, rgba(255,255,255,.74) 50%, transparent 56%); animation: shine 5.5s ease-in-out infinite; }
 .availability { margin: 17px 0 11px; padding: 5px 10px; display: flex; align-items: center; gap: 6px; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; color: rgba(255,255,255,.78); background: rgba(3,24,45,.36); font-size: 8px; letter-spacing: .11em; text-transform: uppercase; backdrop-filter: blur(8px); }
 .availability i { width: 6px; height: 6px; border-radius: 50%; background: #61db9a; box-shadow: 0 0 9px #61db9a; animation: pulse 2s infinite; }
+.identity-copy { width: min(100%, 450px); padding: 13px 22px 14px; position: relative; border: 1px solid rgba(255,255,255,.2); border-radius: 24px; background: linear-gradient(135deg, rgba(7,29,54,.94), rgba(11,45,82,.86)); box-shadow: 0 15px 32px rgba(3,20,36,.25), inset 0 1px rgba(255,255,255,.12); backdrop-filter: blur(10px); }
+.identity-copy::before { content: ""; position: absolute; left: 19px; right: 19px; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold-bright), transparent); opacity: .8; }
 h1 { margin: 0; color: white; font: 700 clamp(33px, 8vw, 47px)/.97 "Montserrat", Arial, sans-serif; letter-spacing: -.05em; text-shadow: 0 4px 18px rgba(0,0,0,.32); }
 h1 span { display: block; color: #f2bd52; }
 .role { margin: 12px 0 0; color: white; font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
@@ -74,8 +76,8 @@ h1 span { display: block; color: #f2bd52; }
 
 .action-rail { height: 250px; position: relative; z-index: 11; margin-top: -10px; }
 .rail-line { position: absolute; width: 109%; height: 7px; left: -4%; top: 46%; transform: rotate(-21deg); border-radius: 99px; background: linear-gradient(90deg, var(--navy-deep), var(--navy) 46%, var(--gold) 47%, var(--gold-bright)); box-shadow: 0 4px 10px rgba(10,35,60,.2); }
-.rail-action { width: 70px; height: 70px; position: absolute; display: grid; place-items: center; filter: drop-shadow(0 10px 9px rgba(20,31,39,.28)); transition: transform .22s ease, filter .22s ease; }
-.rail-action > span { width: 62px; height: 62px; display: grid; place-items: center; border: 2px solid #dc9c2c; border-radius: 50%; color: white; background: linear-gradient(145deg, #dfa033, #a86509); box-shadow: inset 0 2px 2px rgba(255,255,255,.4), inset 0 -5px 9px rgba(86,48,0,.25), 0 0 0 3px rgba(132,80,6,.18); font-size: 25px; }
+.rail-action { width: 86px; height: 86px; position: absolute; display: grid; place-items: center; filter: drop-shadow(0 12px 10px rgba(20,31,39,.3)); transition: transform .22s ease, filter .22s ease; }
+.rail-action > span { width: 76px; height: 76px; display: grid; place-items: center; border: 3px solid #e2a235; border-radius: 50%; color: white; background: linear-gradient(145deg, #e3a43a, #a86509); box-shadow: inset 0 3px 3px rgba(255,255,255,.42), inset 0 -6px 10px rgba(86,48,0,.27), 0 0 0 4px rgba(132,80,6,.18); font-size: 31px; }
 .rail-action::after { content: attr(data-label); position: absolute; top: calc(100% + 3px); padding: 4px 7px; border-radius: 999px; color: white; background: rgba(7,29,54,.88); font-size: 8px; letter-spacing: .04em; opacity: 0; transform: translateY(-4px); transition: .2s; white-space: nowrap; }
 .rail-action:hover, .rail-action:focus-visible { transform: translateY(-8px) scale(1.08); filter: drop-shadow(0 15px 12px rgba(20,31,39,.35)); outline: none; }
 .rail-action:hover::after, .rail-action:focus-visible::after { opacity: 1; transform: translateY(0); }
@@ -120,8 +122,7 @@ footer i { width: 31px; height: 31px; display: grid; place-items: center; border
   .identity { min-height: 396px; }
   .logo-disc { width: 190px; height: 190px; padding: 23px; }
   .action-rail { height: 230px; }
-  .rail-action { transform: scale(.91); }
-  .rail-action:hover, .rail-action:focus-visible { transform: translateY(-6px) scale(.98); }
+  .rail-action:hover, .rail-action:focus-visible { transform: translateY(-7px) scale(1.05); }
   .rail-one { left: 1%; top: 129px; }
   .rail-two { left: 19%; top: 94px; }
   .rail-three { left: 39%; top: 55px; }
@@ -134,7 +135,8 @@ footer i { width: 31px; height: 31px; display: grid; place-items: center; border
   .identity { padding-inline: 15px; }
   .logo-disc { width: 176px; height: 176px; }
   h1 { font-size: 32px; }
-  .rail-action { transform: scale(.82); }
+  .rail-action { width: 76px; height: 76px; }
+  .rail-action > span { width: 68px; height: 68px; font-size: 28px; }
   .contact-sheet { padding-inline: 13px; }
   .contact-grid { grid-template-columns: 1fr; }
   .contact-detail.location { grid-column: auto; }
