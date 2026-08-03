@@ -55,8 +55,13 @@ button { color: inherit; font: inherit; }
 .card-topbar { height: 70px; padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 10; color: rgba(255,255,255,.76); }
 .card-topbar > span { display: flex; align-items: center; gap: 9px; font-size: 9px; letter-spacing: .19em; text-transform: uppercase; }
 .card-topbar > span i { width: 17px; height: 1px; background: var(--gold-bright); box-shadow: 0 0 10px var(--gold-bright); }
+.topbar-actions { display: flex; align-items: center; gap: 9px; }
 .card-topbar button { width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.24); border-radius: 50%; background: rgba(255,255,255,.08); color: white; cursor: pointer; backdrop-filter: blur(8px); transition: .22s ease; }
 .card-topbar button:hover, .card-topbar button:focus-visible { transform: rotate(-8deg) scale(1.06); border-color: var(--gold-bright); color: #ffd67b; outline: 3px solid rgba(224,168,62,.16); }
+.card-topbar .language-toggle { width: 58px; grid-template-columns: 21px auto; gap: 3px; border-radius: 999px; color: #ffe6a7; background: rgba(7,29,54,.54); }
+.language-toggle iconify-icon { font-size: 19px; }
+.language-toggle b { font-size: 10px; letter-spacing: .06em; }
+.card-topbar .language-toggle:hover, .card-topbar .language-toggle:focus-visible { transform: translateY(-2px) scale(1.04); }
 
 .identity { min-height: 405px; padding: 4px 28px 0; position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; text-align: center; }
 .logo-disc { width: 210px; height: 210px; padding: 25px; display: grid; place-items: center; position: relative; border-radius: 50%; background: linear-gradient(145deg, #fff, #e9e9e6); box-shadow: 0 19px 42px rgba(1,20,39,.32), 0 0 0 9px rgba(255,255,255,.09), inset 0 2px white; transform: perspective(900px) rotateX(var(--disc-x)) rotateY(var(--disc-y)); transition: transform .16s ease-out; }
@@ -111,6 +116,16 @@ footer i { width: 31px; height: 31px; display: grid; place-items: center; border
 .toast iconify-icon { color: #f2bd52; }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
+html[dir="rtl"] body { font-family: "Tajawal", "DM Sans", Arial, sans-serif; }
+html[dir="rtl"] .card-topbar > span { letter-spacing: .08em; }
+html[dir="rtl"] .identity-copy h1 { font-family: "Tajawal", Arial, sans-serif; letter-spacing: -.025em; line-height: 1.04; }
+html[dir="rtl"] .role { letter-spacing: .06em; }
+html[dir="rtl"] .contact-detail { text-align: right; }
+html[dir="rtl"] .contact-detail strong { direction: ltr; text-align: right; }
+html[dir="rtl"] .contact-detail.location strong { direction: rtl; }
+html[dir="rtl"] footer span:last-child { text-align: left; }
+html[dir="rtl"] footer span:first-child { text-align: right; }
+
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes shine { 0%,56% { transform: translateX(-46%); } 76%,100% { transform: translateX(46%); } }
 @keyframes pulse { 0%,100% { opacity: .55; transform: scale(.82); } 50% { opacity: 1; transform: scale(1.14); } }
@@ -132,6 +147,9 @@ footer i { width: 31px; height: 31px; display: grid; place-items: center; border
 
 @media (max-width: 380px) {
   .card-topbar { padding-inline: 17px; }
+  .topbar-actions { gap: 6px; }
+  .card-topbar button { width: 38px; height: 38px; }
+  .card-topbar .language-toggle { width: 52px; }
   .identity { padding-inline: 15px; }
   .logo-disc { width: 176px; height: 176px; }
   h1 { font-size: 32px; }

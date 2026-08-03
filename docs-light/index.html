@@ -12,7 +12,7 @@
     <title>Omar Abdullah Eshaq | Digital Contact</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
   </head>
@@ -27,8 +27,13 @@
         <div class="gold-edge"></div>
 
         <header class="card-topbar">
-          <span><i></i> Digital contact</span>
-          <button id="share" type="button" aria-label="Share this contact card"><iconify-icon icon="solar:share-bold"></iconify-icon></button>
+          <span id="digitalLabel"><i></i> Digital contact</span>
+          <div class="topbar-actions">
+            <button class="language-toggle" id="languageToggle" type="button" aria-label="Switch card to Arabic" title="العربية">
+              <iconify-icon icon="solar:global-bold"></iconify-icon><b>AR</b>
+            </button>
+            <button id="share" type="button" aria-label="Share this contact card"><iconify-icon icon="solar:share-bold"></iconify-icon></button>
+          </div>
         </header>
 
         <section class="identity">
@@ -37,11 +42,11 @@
             <img src="assets/logo.png" alt="Eshaq Trading Company logo" />
             <span class="disc-glint"></span>
           </div>
-          <p class="availability"><i></i> Available for business</p>
+          <p class="availability" id="availability"><i></i> Available for business</p>
           <div class="identity-copy">
-            <h1>Omar Abdullah <span>Eshaq</span></h1>
-            <p class="role">Assistant General Manager</p>
-            <p class="company">Eshaq Trading Company</p>
+            <h1 id="personName">Omar Abdullah <span>Eshaq</span></h1>
+            <p class="role" id="personRole">Assistant General Manager</p>
+            <p class="company" id="companyName">Eshaq Trading Company</p>
           </div>
         </section>
 
@@ -65,26 +70,26 @@
         </section>
 
         <section class="contact-sheet">
-          <p class="sheet-hint"><iconify-icon icon="solar:hand-tap-bold"></iconify-icon> Tap an icon to connect</p>
+          <p class="sheet-hint"><iconify-icon icon="solar:hand-tap-bold"></iconify-icon> <span id="sheetHint">Tap an icon to connect</span></p>
           <div class="contact-grid">
             <button type="button" class="contact-detail" data-copy="+967776060802" data-copy-label="Phone number" aria-label="Copy phone number">
-              <small>Phone</small><strong>+967 776 060 802</strong><iconify-icon icon="solar:copy-bold"></iconify-icon>
+              <small id="phoneLabel">Phone</small><strong>+967 776 060 802</strong><iconify-icon icon="solar:copy-bold"></iconify-icon>
             </button>
             <button type="button" class="contact-detail" data-copy="omar@eshaqltd.com" data-copy-label="Email address" aria-label="Copy email address">
-              <small>Email</small><strong>omar@eshaqltd.com</strong><iconify-icon icon="solar:copy-bold"></iconify-icon>
+              <small id="emailLabel">Email</small><strong>omar@eshaqltd.com</strong><iconify-icon icon="solar:copy-bold"></iconify-icon>
             </button>
             <a class="contact-detail location" href="https://maps.google.com/?q=Sana%27a%2C%20Yemen" target="_blank" rel="noreferrer">
-              <small>Location</small><strong>Yemen, Sana’a</strong><iconify-icon icon="solar:arrow-up-right-bold"></iconify-icon>
+              <small id="locationLabel">Location</small><strong id="locationValue">Yemen, Sana’a</strong><iconify-icon icon="solar:arrow-up-right-bold"></iconify-icon>
             </a>
           </div>
           <button class="wechat-button" id="wechat" type="button">
             <iconify-icon icon="fa6-brands:weixin"></iconify-icon>
-            <span><small>Number copied automatically</small>Add on WeChat</span>
+            <span><small id="wechatHint">Number copied automatically</small><span id="wechatLabel">Add on WeChat</span></span>
             <iconify-icon icon="solar:arrow-up-right-bold"></iconify-icon>
           </button>
         </section>
 
-        <footer><span>Eshaq Trading Company</span><i>E</i><span>Established 1995</span></footer>
+        <footer><span id="footerCompany">Eshaq Trading Company</span><i>E</i><span id="footerEstablished">Established 1995</span></footer>
       </article>
 
       <div class="toast" id="toast" role="status" aria-live="polite">
