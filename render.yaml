@@ -17,3 +17,7 @@ services:
     staticPublishPath: ./docs-light
     autoDeployTrigger: commit
     renderSubdomainPolicy: enabled
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
