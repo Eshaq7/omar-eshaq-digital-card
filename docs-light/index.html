@@ -32,6 +32,7 @@
             <button class="language-toggle" id="languageToggle" type="button" aria-label="Switch card to Arabic" title="العربية">
               <iconify-icon icon="solar:global-bold"></iconify-icon><b>AR</b>
             </button>
+            <button id="qrTrigger" type="button" aria-label="Show card QR code" title="QR Code"><iconify-icon icon="solar:qr-code-bold"></iconify-icon></button>
             <button id="share" type="button" aria-label="Share this contact card"><iconify-icon icon="solar:share-bold"></iconify-icon></button>
           </div>
         </header>
@@ -91,6 +92,15 @@
 
         <footer><span id="footerCompany">Eshaq Trading Company</span><i>E</i><span id="footerEstablished">Established 1995</span></footer>
       </article>
+
+      <dialog class="qr-dialog" id="qrDialog" aria-labelledby="qrTitle">
+        <button class="qr-close" id="qrClose" type="button" aria-label="Close QR code"><iconify-icon icon="solar:close-circle-bold"></iconify-icon></button>
+        <div class="qr-mark"><iconify-icon icon="solar:qr-code-bold"></iconify-icon></div>
+        <h2 id="qrTitle">Scan to open my card</h2>
+        <p id="qrDescription">Point your camera at this code to save or share this digital contact.</p>
+        <div class="qr-image-wrap"><img id="qrImage" alt="QR code for Omar Abdullah Eshaq digital contact card" /></div>
+        <small id="qrUrl">omar-eshaq-luminous-card.onrender.com</small>
+      </dialog>
 
       <div class="toast" id="toast" role="status" aria-live="polite">
         <iconify-icon icon="solar:check-circle-bold"></iconify-icon><span></span>

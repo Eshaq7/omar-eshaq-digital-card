@@ -2,6 +2,8 @@ const card = document.querySelector('#card');
 const logoDisc = document.querySelector('#logoDisc');
 const toast = document.querySelector('#toast');
 const languageToggle = document.querySelector('#languageToggle');
+const qrTrigger = document.querySelector('#qrTrigger');
+const qrDialog = document.querySelector('#qrDialog');
 let toastTimer;
 let currentLanguage = localStorage.getItem('card-language') || 'en';
 
@@ -14,7 +16,8 @@ const translations = {
     rail: ['Call', 'Email', 'WhatsApp', 'Location', 'Save'],
     aria: ['Call Omar', 'Email Omar', 'Chat with Omar on WhatsApp', 'Open location in maps', 'Save contact'],
     cardAria: 'Digital business card for Omar Abdullah Eshaq', shareAria: 'Share this contact card',
-    languageAria: 'Switch card to Arabic', languageTitle: 'العربية', languageCode: 'AR',
+    languageAria: 'Switch card to Arabic', languageTitle: 'العربية', languageCode: 'AR', qrAria: 'Show card QR code',
+    qrTitle: 'Scan to open my card', qrDescription: 'Point your camera at this code to save or share this digital contact.', qrClose: 'Close QR code',
     phoneCopy: 'Phone number', emailCopy: 'Email address', copyFailed: 'Could not copy this value',
     linkCopied: 'Card link copied', wechatToast: 'Phone number copied — opening WeChat'
   },
@@ -26,7 +29,8 @@ const translations = {
     rail: ['اتصال', 'البريد', 'واتساب', 'الموقع', 'حفظ'],
     aria: ['الاتصال بعمر', 'مراسلة عمر بالبريد', 'محادثة عمر عبر واتساب', 'فتح الموقع على الخريطة', 'حفظ جهة الاتصال'],
     cardAria: 'بطاقة الاتصال الرقمية لعمر عبدالله إسحاق', shareAria: 'مشاركة بطاقة الاتصال',
-    languageAria: 'تحويل البطاقة إلى الإنجليزية', languageTitle: 'English', languageCode: 'EN',
+    languageAria: 'تحويل البطاقة إلى الإنجليزية', languageTitle: 'English', languageCode: 'EN', qrAria: 'إظهار رمز QR للبطاقة',
+    qrTitle: 'امسح الرمز لفتح بطاقتي', qrDescription: 'وجّه كاميرا هاتفك إلى الرمز لحفظ بطاقة الاتصال أو مشاركتها.', qrClose: 'إغلاق رمز QR',
     phoneCopy: 'رقم الهاتف', emailCopy: 'عنوان البريد الإلكتروني', copyFailed: 'تعذر نسخ هذه المعلومة',
     linkCopied: 'تم نسخ رابط البطاقة', wechatToast: 'تم نسخ رقم الهاتف — جارٍ فتح WeChat'
   }
@@ -69,6 +73,11 @@ function applyLanguage(language) {
   copyButtons[1].dataset.copyLabel = t.emailCopy;
   copyButtons[1].setAttribute('aria-label', currentLanguage === 'ar' ? 'نسخ البريد الإلكتروني' : 'Copy email address');
   document.querySelector('#share').setAttribute('aria-label', t.shareAria);
+  qrTrigger.setAttribute('aria-label', t.qrAria);
+  qrTrigger.title = currentLanguage === 'ar' ? 'رمز QR' : 'QR Code';
+  document.querySelector('#qrTitle').textContent = t.qrTitle;
+  document.querySelector('#qrDescription').textContent = t.qrDescription;
+  document.querySelector('#qrClose').setAttribute('aria-label', t.qrClose);
   languageToggle.setAttribute('aria-label', t.languageAria);
   languageToggle.title = t.languageTitle;
   languageToggle.querySelector('b').textContent = t.languageCode;
@@ -118,6 +127,15 @@ document.querySelector('#wechat').addEventListener('click', async () => {
 languageToggle.addEventListener('click', () => {
   applyLanguage(currentLanguage === 'en' ? 'ar' : 'en');
 });
+
+qrTrigger.addEventListener('click', () => {
+  const cardUrl = `${location.origin}${location.pathname}`;
+  document.querySelector('#qrImage').src = `https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=14&format=png&data=${encodeURIComponent(cardUrl)}`;
+  document.querySelector('#qrUrl').textContent = cardUrl.replace(/^https:\/\//, '');
+  qrDialog.showModal();
+});
+
+document.querySelector('#qrClose').addEventListener('click', () => qrDialog.close());
 
 logoDisc.addEventListener('pointermove', (event) => {
   if (window.matchMedia('(pointer: coarse)').matches) return;
