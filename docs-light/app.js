@@ -1,8 +1,5 @@
 const card = document.querySelector('#card');
-const shell = document.querySelector('#shell');
-const cursorLight = document.querySelector('#cursorLight');
-const logoStage = document.querySelector('#logoStage');
-const logoTile = logoStage.querySelector('.logo-tile');
+const logoDisc = document.querySelector('#logoDisc');
 const toast = document.querySelector('#toast');
 let toastTimer;
 
@@ -13,30 +10,11 @@ function showToast(message) {
   toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
 }
 
-shell.addEventListener('pointermove', (event) => {
-  cursorLight.style.left = `${event.clientX}px`;
-  cursorLight.style.top = `${event.clientY}px`;
-});
-
-logoStage.addEventListener('pointermove', (event) => {
-  if (window.matchMedia('(pointer: coarse)').matches) return;
-  const rect = logoStage.getBoundingClientRect();
-  const x = (event.clientX - rect.left) / rect.width - 0.5;
-  const y = (event.clientY - rect.top) / rect.height - 0.5;
-  logoTile.style.setProperty('--logo-x', `${-y * 12}deg`);
-  logoTile.style.setProperty('--logo-y', `${x * 12}deg`);
-});
-
-logoStage.addEventListener('pointerleave', () => {
-  logoTile.style.setProperty('--logo-x', '0deg');
-  logoTile.style.setProperty('--logo-y', '0deg');
-});
-
 document.querySelectorAll('[data-copy]').forEach((button) => {
   button.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(button.dataset.copy);
-      showToast(`${button.dataset.label} copied`);
+      showToast(`${button.dataset.copyLabel} copied`);
     } catch {
       showToast('Could not copy this value');
     }
@@ -44,13 +22,13 @@ document.querySelectorAll('[data-copy]').forEach((button) => {
 });
 
 document.querySelector('#share').addEventListener('click', async () => {
-  const shareData = {
+  const data = {
     title: 'Omar Abdullah Eshaq',
     text: 'Digital contact card for Omar Abdullah Eshaq — Eshaq Trading Company',
     url: location.href,
   };
   try {
-    if (navigator.share) await navigator.share(shareData);
+    if (navigator.share) await navigator.share(data);
     else {
       await navigator.clipboard.writeText(location.href);
       showToast('Card link copied');
@@ -64,12 +42,26 @@ document.querySelector('#wechat').addEventListener('click', async () => {
   location.href = 'weixin://';
 });
 
-function fitDesktopCard() {
-  card.style.removeProperty('zoom');
-  if (window.innerWidth <= 860) return;
+logoDisc.addEventListener('pointermove', (event) => {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+  const rect = logoDisc.getBoundingClientRect();
+  const x = (event.clientX - rect.left) / rect.width - 0.5;
+  const y = (event.clientY - rect.top) / rect.height - 0.5;
+  logoDisc.style.setProperty('--disc-x', `${-y * 8}deg`);
+  logoDisc.style.setProperty('--disc-y', `${x * 8}deg`);
+});
+
+logoDisc.addEventListener('pointerleave', () => {
+  logoDisc.style.setProperty('--disc-x', '0deg');
+  logoDisc.style.setProperty('--disc-y', '0deg');
+});
+
+function fitCardToViewport() {
+  card.style.zoom = '1';
+  if (window.innerWidth <= 580) return;
   const scale = Math.min(1, (window.innerWidth - 28) / card.offsetWidth, (window.innerHeight - 28) / card.scrollHeight);
-  card.style.zoom = String(scale);
+  card.style.zoom = String(Math.max(0.55, scale));
 }
 
-fitDesktopCard();
-window.addEventListener('resize', fitDesktopCard, { passive: true });
+fitCardToViewport();
+window.addEventListener('resize', fitCardToViewport, { passive: true });
