@@ -18,6 +18,12 @@ const words = {
 function cardUrl() { return `${location.origin}${location.pathname}`; }
 function qrSource() { return `https://api.qrserver.com/v1/create-qr-code/?size=460x460&margin=14&format=png&data=${encodeURIComponent(cardUrl())}`; }
 function showToast(message) { toast.querySelector('span').textContent = message; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2600); }
+function fitCardToViewport() {
+  card.style.zoom = '1';
+  if (window.innerWidth <= 580) return;
+  const scale = Math.min(1, (window.innerWidth - 34) / card.offsetWidth, (window.innerHeight - 34) / card.scrollHeight);
+  card.style.zoom = String(Math.max(.64, scale));
+}
 
 function applyLanguage(next) {
   language = words[next] ? next : 'en';
@@ -54,3 +60,5 @@ document.querySelector('#qrClose').addEventListener('click', () => qrDialog.clos
 document.querySelector('#wechat').addEventListener('click', async () => { try { await navigator.clipboard.writeText('+967776060802'); } catch (_) {} showToast(words[language].wechatToast); location.href = 'weixin://'; });
 document.querySelector('#qrImage').src = qrSource();
 applyLanguage(language);
+fitCardToViewport();
+window.addEventListener('resize', fitCardToViewport, { passive: true });
