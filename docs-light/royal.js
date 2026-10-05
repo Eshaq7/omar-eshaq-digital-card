@@ -2,16 +2,17 @@ const card = document.querySelector('#card');
 const languageToggle = document.querySelector('#languageToggle');
 const qrTrigger = document.querySelector('#qrTrigger');
 const qrDialog = document.querySelector('#qrDialog');
+const wechatDialog = document.querySelector('#wechatDialog');
 const toast = document.querySelector('#toast');
 let language = localStorage.getItem('royal-card-language') || 'en';
 let toastTimer;
 
 const words = {
   en: {
-    digital: 'Digital contact', name: 'Omar Abdullah <span>Eshaq</span>', role: 'Assistant General Manager', company: 'Eshaq Trading Company', location: 'Yemen, Sana’a', available: 'Available for business', wechat: 'Add on WeChat', qr: 'Share', languageCode: 'AR', languageTitle: 'العربية', languageAria: 'Switch card to Arabic', shareAria: 'Share this contact card', qrAria: 'Show card QR code', qrTitle: 'Scan to open my card', qrDescription: 'Point your camera at this code to open this digital contact.', qrClose: 'Close QR code', linkCopied: 'Card link copied', wechatToast: 'Phone number copied — opening WeChat'
+    digital: 'Digital contact', name: 'Omar Abdullah <span>Eshaq</span>', role: 'Assistant General Manager', company: 'Eshaq Trading Company', location: 'Yemen, Sana’a', available: 'Available for business', wechat: 'Add on WeChat', qr: 'Share', languageCode: 'AR', languageTitle: 'العربية', languageAria: 'Switch card to Arabic', shareAria: 'Share this contact card', qrAria: 'Show card QR code', qrTitle: 'Scan to open my card', qrDescription: 'Point your camera at this code to open this digital contact.', qrClose: 'Close QR code', wechatQrTitle: 'Scan to add on WeChat', wechatQrDescription: 'Scan this official WeChat code to connect directly.', wechatQrClose: 'Close WeChat QR code', linkCopied: 'Card link copied'
   },
   ar: {
-    digital: 'بطاقة اتصال رقمية', name: 'عمر عبدالله <span>إسحاق</span>', role: 'مساعد المدير العام', company: 'شركة إسحاق التجارية', location: 'اليمن، صنعاء', available: 'متاح للأعمال', wechat: 'إضافة على WeChat', qr: 'مشاركة', languageCode: 'EN', languageTitle: 'English', languageAria: 'تحويل البطاقة إلى الإنجليزية', shareAria: 'مشاركة بطاقة الاتصال', qrAria: 'إظهار رمز QR للبطاقة', qrTitle: 'امسح الرمز لفتح بطاقتي', qrDescription: 'وجّه كاميرا هاتفك إلى الرمز لفتح بطاقة الاتصال الرقمية.', qrClose: 'إغلاق رمز QR', linkCopied: 'تم نسخ رابط البطاقة', wechatToast: 'تم نسخ رقم الهاتف — جارٍ فتح WeChat'
+    digital: 'بطاقة اتصال رقمية', name: 'عمر عبدالله <span>إسحاق</span>', role: 'مساعد المدير العام', company: 'شركة إسحاق التجارية', location: 'اليمن، صنعاء', available: 'متاح للأعمال', wechat: 'إضافة على WeChat', qr: 'مشاركة', languageCode: 'EN', languageTitle: 'English', languageAria: 'تحويل البطاقة إلى الإنجليزية', shareAria: 'مشاركة بطاقة الاتصال', qrAria: 'إظهار رمز QR للبطاقة', qrTitle: 'امسح الرمز لفتح بطاقتي', qrDescription: 'وجّه كاميرا هاتفك إلى الرمز لفتح بطاقة الاتصال الرقمية.', qrClose: 'إغلاق رمز QR', wechatQrTitle: 'امسح الرمز للإضافة عبر WeChat', wechatQrDescription: 'امسح رمز WeChat الرسمي للتواصل مباشرة.', wechatQrClose: 'إغلاق رمز WeChat', linkCopied: 'تم نسخ رابط البطاقة'
   }
 };
 
@@ -47,6 +48,9 @@ function applyLanguage(next) {
   document.querySelector('#qrTitle').textContent = t.qrTitle;
   document.querySelector('#qrDescription').textContent = t.qrDescription;
   document.querySelector('#qrClose').setAttribute('aria-label', t.qrClose);
+  document.querySelector('#wechatQrTitle').textContent = t.wechatQrTitle;
+  document.querySelector('#wechatQrDescription').textContent = t.wechatQrDescription;
+  document.querySelector('#wechatQrClose').setAttribute('aria-label', t.wechatQrClose);
   localStorage.setItem('royal-card-language', language);
 }
 
@@ -57,7 +61,8 @@ document.querySelector('#share').addEventListener('click', async () => {
 });
 qrTrigger.addEventListener('click', () => { document.querySelector('#dialogQrImage').src = qrSource(); document.querySelector('#qrUrl').textContent = cardUrl().replace(/^https:\/\//, ''); qrDialog.showModal(); });
 document.querySelector('#qrClose').addEventListener('click', () => qrDialog.close());
-document.querySelector('#wechat').addEventListener('click', async () => { try { await navigator.clipboard.writeText('+967776060802'); } catch (_) {} showToast(words[language].wechatToast); location.href = 'weixin://'; });
+document.querySelector('#wechat').addEventListener('click', () => wechatDialog.showModal());
+document.querySelector('#wechatQrClose').addEventListener('click', () => wechatDialog.close());
 document.querySelector('#qrImage').src = qrSource();
 applyLanguage(language);
 fitCardToViewport();

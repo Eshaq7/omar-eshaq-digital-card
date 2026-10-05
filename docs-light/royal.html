@@ -64,6 +64,12 @@
         <div><img id="dialogQrImage" alt="QR code for this contact card" /></div>
         <small id="qrUrl"></small>
       </dialog>
+      <dialog class="qr-dialog wechat-dialog" id="wechatDialog" aria-labelledby="wechatQrTitle">
+        <button class="close" id="wechatQrClose" type="button" aria-label="Close WeChat QR code"><iconify-icon icon="solar:close-circle-bold"></iconify-icon></button>
+        <iconify-icon class="dialog-icon" icon="fa6-brands:weixin"></iconify-icon>
+        <h2 id="wechatQrTitle">Scan to add on WeChat</h2><p id="wechatQrDescription">Scan this official WeChat code to connect directly.</p>
+        <div><img src="assets/wechat-qr.png" alt="WeChat QR code for Omar Abdullah Eshaq" /></div>
+      </dialog>
       <div class="toast" id="toast" role="status" aria-live="polite"><iconify-icon icon="solar:check-circle-bold"></iconify-icon><span></span></div>
     </main>
     <script src="royal.js?v=2"></script>
